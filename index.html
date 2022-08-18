@@ -15,10 +15,18 @@
     /*var vocales = [a,e,i,o,u];*/
     console.log(texto.length);
 
+    function normaliza(texto){
+        texto = texto.toLowerCase();
+        texto = texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        texto = texto.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
+        return texto;
+    }
+
     function funcionEncriptar() {
         texto = document.getElementById("texto-encriptar").value;
-        texto = texto.toLowerCase();
+        texto = normaliza(texto);
 
+        cadena = [];
         if (texto.length > 0) {
             console.log("entro al primer if ");
             console.log(texto.length);
@@ -27,6 +35,7 @@
 
                 cadena.push(texto.charAt(i));
                 console.log(cadena);
+                
             }
 
             for (var i = 0; i < cadena.length; i++) {
@@ -45,6 +54,7 @@
                 }
             }
             console.log(cadena.join(""));
+            
 
         }
 
@@ -60,7 +70,7 @@
             x.style.display = 'block';
         }
 
-
+        
     }
 
     function carga() {
@@ -71,7 +81,12 @@
     window.onload = carga;
 
     function funcionDesencriptar() {
+       
         texto = document.getElementById("textarea-desencriptado").value;
+         
+        if(texto === "" || texto === null ){
+            texto = document.getElementById("texto-encriptar").value;
+        }
         console.log("tomo el valor" + texto);
 
         texto = texto.toLowerCase();
@@ -118,7 +133,7 @@
     <main class="marco-principal">
 
         <img class="vector" src="Imagenes/Vector.png">
-
+        <h1>Encriptador - Challengue Alura</h1>
         <textarea id="texto-encriptar" placeholder="Ingrese el texto aqui"></textarea>
 
         <section class="seccion-lateral">
@@ -148,7 +163,7 @@
 
         </div>
 
-
+        <p class="pie"> &copy Creado por Natalia Sepulveda Muñoz</p>
 
     </main>
 

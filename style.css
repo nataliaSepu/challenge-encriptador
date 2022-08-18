@@ -10,6 +10,12 @@ html {
     }
 }
 
+h1{
+    padding: 1em;
+    text-align: center;
+    font-size: 32px;
+    color:rgba(10, 56, 113, 1);
+}
 
 .marco-principal {
     background: #F3F5FC;
@@ -131,12 +137,14 @@ html {
 
 .texto-indicacion {
     /* Solo letras minúsculas y sin acentos */
-    width: 205px;
+    display: block;
+    width: 255px;
     height: 18px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
+    text-align:center ;
     line-height: 150%;
     color: #495057;
     opacity: 0.8;
@@ -200,4 +208,12 @@ html {
     border: 1px solid #0A3871;
     border-radius: 24px;
     padding: 24px;
+}
+
+.pie{
+    font-size: 12px;
+    position: relative;
+    left: 2px;
+    top: 908px;
+    color:rgba(10, 56, 113, 1);
 }

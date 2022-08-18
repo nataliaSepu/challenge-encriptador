@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+
+
+<script>
+
+    /*var texto = document.querySelector(".Enter"); if (texto.charAt(i) == "i") ;
+                */
+
+    var cadena = [];
+    var texto = "";
+
+
+    /*var vocales = [a,e,i,o,u];*/
+    console.log(texto.length);
+
+    function funcionEncriptar() {
+        texto = document.getElementById("texto-encriptar").value;
+        texto = texto.toLowerCase();
+
+        if (texto.length > 0) {
+            console.log("entro al primer if ");
+            console.log(texto.length);
+
+            for (var i = 0; i < texto.length; i++) {
+
+                cadena.push(texto.charAt(i));
+                console.log(cadena);
+            }
+
+            for (var i = 0; i < cadena.length; i++) {
+                if (cadena[i] === "a") {
+                    cadena[i] = "ai";
+                } else if (cadena[i] === "e") {
+                    cadena[i] = "enter";
+                } else if (cadena[i] === "i") {
+                    cadena[i] = "imes";
+                } else if (cadena[i] === "o") {
+                    cadena[i] = "ober";
+                } else if (cadena[i] === "u") {
+                    cadena[i] = "ufat";
+                } else if (cadena[i] === " ") {
+                    cadena[i] = " ";
+                }
+            }
+            console.log(cadena.join(""));
+
+        }
+
+        document.getElementById('textarea-desencriptado').value = cadena.join("");
+        document.getElementById("area-desencriptar").style.display = "none";
+        document.getElementById("btn-copiar").style.display = "block";
+
+        /*aparece y desaparece un elemento*/
+        var x = document.getElementById('textarea-desencriptado');
+        if (x.style.display === 'block') {
+            x.style.display = 'none';
+        } else {
+            x.style.display = 'block';
+        }
+
+
+    }
+
+    function carga() {
+        document.getElementById("textarea-desencriptado").style.display = "none";
+        document.getElementById("btn-copiar").style.display = "none";
+    }
+
+    window.onload = carga;
+
+    function funcionDesencriptar() {
+        texto = document.getElementById("textarea-desencriptado").value;
+        console.log("tomo el valor" + texto);
+
+        texto = texto.toLowerCase();
+
+        texto = texto.replace(/ufat/g, "u");
+        texto = texto.replace(/ober/g, "o");
+        texto = texto.replace(/imes/g, "i");
+        texto = texto.replace(/enter/g, "e");
+        texto = texto.replace(/ai/g, "a");
+        console.log(texto);
+
+        document.getElementById('textarea-desencriptado').value = texto;
+
+
+        /*aparece y desaparece un elemento*/
+        var x = document.getElementById('textarea-desencriptado');
+        if (x.style.display === 'block') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+
+    }
+
+    function copiar() {
+        let copyText = document.querySelector("#textarea-desencriptado");
+        copyText.select();
+        document.execCommand("copy");
+    }
+    document.querySelector("#textarea-desencriptado").addEventListener("click", copy);
+</script>
+
+<html>
+
+<head>
+    <title>Encriptador</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <main class="marco-principal">
+
+        <img class="vector" src="Imagenes/Vector.png">
+
+        <textarea id="texto-encriptar" placeholder="Ingrese el texto aqui"></textarea>
+
+        <section class="seccion-lateral">
+
+            <div id="area-desencriptar">
+                <img id="imagen-lateral" src="Imagenes/muñeco.png" alt="muñeco.png">
+
+                <div class="texto-lateral">
+                    <p class="mensaje-noencontrado">Ningún mensaje fue encontrado</p>
+                    <p class="mensaje-instruccion">Ingresa el texto que deseas encriptar o desencriptar</p>
+                </div>
+            </div>
+
+            <textarea id="textarea-desencriptado"></textarea>
+
+            <div id="btn-copiar">
+                <input class="boton-copiar" type="button" onclick="copiar()" value="Copiar">
+            </div>
+
+        </section>
+
+        <div class="caja-botones">
+            <p class="texto-indicacion">Solo letras minúsculas y sin acento</p>
+
+            <input class="boton-encriptar" type="button" onclick="funcionEncriptar()" value="Encriptar">
+            <input class="boton-desencriptar" type="button" onclick="funcionDesencriptar()" value="Desencriptar">
+
+        </div>
+
+
+
+    </main>
+
+</body>
+
+</html>
